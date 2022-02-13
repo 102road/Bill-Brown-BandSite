@@ -1,0 +1,82 @@
+@use "./partials/fonts";
+@use "./partials/variables";
+@use "./partials/responsive" as *;
+
+
+.hero__div{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.hero__title{
+    position: relative;
+}
+iframe{
+    z-index: 1;
+    padding: 1rem;
+}
+.shows{
+    padding-bottom: 1rem;
+}
+.shows__title{
+    padding: 1.5rem 0 1.5rem 1rem;
+}
+.concert-container{
+    border-bottom: 1px solid variables.$secondary-color-mercury;
+    margin: 1rem 1rem;
+
+}
+.title{
+    font-weight: 600;
+    color: variables.$secondary-color-mercury;
+}
+.date{
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.5rem 0 1rem 0;
+}
+.description{
+    font-size: 1rem;
+    padding: 0.5rem 0 1rem 0;
+}
+button{
+    background-color: variables.$primary-color-black;
+    color: variables.$primary-color-white;
+    border-radius: 0.25rem;
+    height: 2.5rem;
+    width: 90%;
+    border: none;
+}
+.concert-first-div{
+    display: none;
+}
+
+@include tablet{
+    .hero__title-small{
+        padding: 2rem;
+    }
+    .shows__title{
+        padding: 3rem 2rem;
+    }
+    .concert-container{
+        display: flex;
+        justify-content:space-evenly;
+    }
+    .concert-first-div{
+        display: flex;
+        justify-content: space-evenly;
+    }
+    .title{
+        display: none;
+    }
+    button{
+        width: 10rem;
+    }
+}
+@include desktop{
+    .split{
+        display: flex;
+        justify-content: space-between;
+    }
+}

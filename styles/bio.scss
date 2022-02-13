@@ -36,8 +36,8 @@ a {
   text-decoration: none;
 }
 img {
-  width: 90%;
-  max-height: 30%;
+  width: 18.75rem;
+  height: 11.25rem;
   padding: 0 1rem;
 }
 
@@ -98,7 +98,7 @@ img {
 }
 .hero__image {
   width: 100%;
-  height: auto;
+  height: 80%;
   z-index: 0;
   padding: 0;
   opacity: 50%;
@@ -109,23 +109,26 @@ img {
 .section {
   display: flex;
   flex-direction: column;
+  align-content: center;
 }
 .section__heading {
   padding: 1.5rem 0 0.5rem 1rem;
 }
 .section__container {
+  display: inline-block;
   padding: 0.5rem 1rem;
 }
 .section__title {
   padding: 1rem 1rem 0.5rem 0;
 }
-.section__text{
+.section__text {
   padding-bottom: 1rem;
 }
-.section__image{
+.container-info{
+  
+}
+.section__image {
   padding: 0;
-  width: 100%;
-  max-height: 85%;
 }
 .section__text--active {
   font-weight: 600;
@@ -140,13 +143,35 @@ img {
   display: flex;
   flex-wrap: wrap;
 }
-  .gallery__title {
-    padding: 1rem 1rem 0.5rem 1rem;
-  }
-  .gallery__image {
-    padding: 0.5rem 1rem;
-  }
+.gallery__title {
+  padding: 1rem 1rem 0.5rem 1rem;
+}
+.gallery__image {
+  padding: 0.5rem 1rem;
+}
 
+/* comments styling */
+.comments__section{
+  display: flex;
+  justify-content: center;
+}
+.comments__title{
+  padding: 1rem;
+}
+.avatar{
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+}
+.comments__container{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-bottom: 1px solid variables.$secondary-color-mercury;
+}
+input{
+  width: 100%;
+}
 /* footer styling */
 
 .footer {
@@ -156,7 +181,7 @@ img {
   color: variables.$primary-color-white;
   padding: 1.5rem 1rem 0.5rem 1rem;
 }
-.footer__bandsite{
+.footer__bandsite {
   display: none;
 }
 .footer__container {
@@ -191,7 +216,7 @@ img {
   padding: 0.5rem 1rem;
 }
 
-/* tablet settings */
+/*TABLET SETTINGS */
 
 @include tablet {
   h1 {
@@ -206,6 +231,7 @@ img {
   p {
     font-size: 0.875rem;
   }
+  /* HEADER STYLES */
 
   .header {
     display: flex;
@@ -225,110 +251,137 @@ img {
       border-bottom: 0.25rem solid variables.$primary-color-white;
     }
   }
+
+  /* HERO STYLES */
+
   .hero__title {
     padding-left: 2.25rem;
   }
-  .section{
-    width: auto;
+  .hero__image {
+    width:100%;
+    height:510px;
+    object-fit: cover;
+    object-position: top;
+  }
+  /* SECTION STYLES */
+
+  .section {
+    display: inline-block;
     height: auto;
+    display: flex;
+    justify-content: center;
+    align-content: center;
   }
   .section__heading {
     padding: 4rem 2.25rem 1.5rem 2.25rem;
   }
   .section__container {
-    width: auto;
-    padding: 0 3rem;
-    margin: 0 3rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
   }
-  .section__image{
-    min-width: 25%;
-    max-width: 100%;
-    min-height: 10%;
-    max-height: 25%;
+  .container-info{
+    width: 75%;
+    height: 35%;
   }
-  .section__title{
+  .section__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+  }
+  .section__title {
     padding: 1.5rem 0 1rem 0;
   }
-  .section__info{
+  .section__info {
     font-size: 1.5rem;
     line-height: 2rem;
   }
-  .section__text--active{
+  .section__text--active {
     padding: 1rem 0 0 0;
   }
-  .section__split{
+  .section__split {
     display: flex;
     flex-direction: row;
   }
-  .section__text{
+  .section__text {
     padding-right: 1rem;
   }
-  .gallery{
+
+  /* GALLERY STYLES */
+
+  .gallery {
     padding: 3rem 0 0 2.25rem;
   }
-  .gallery__title{
+  .gallery__title {
     padding-left: 0;
   }
-  .gallery__container{
-    display:flex;
+  .gallery__container {
+    display: flex;
     flex-wrap: wrap;
-    padding: 2rem 0; 
+    padding: 2rem 0;
   }
-  .gallery__image{
+  .gallery__image {
     width: 30%;
     height: 30%;
     min-height: 0;
     padding: 0.5rem;
   }
-  .gallery__image-side{
+  .gallery__image-side {
     padding-left: 0;
   }
-  .footer__trunk{
+  // COMMENTS STYLES
+  .comments__title{
+    padding: 2rem;
+  }
+  // FOOTER STYLES
+  .footer__trunk {
     display: flex;
     justify-content: space-between;
   }
-  .footer__bandsite{
+  .footer__bandsite {
     color: variables.$primary-color-white;
     font-weight: 400;
     padding: 2.25rem 1.5rem 0 0.75rem;
     display: inline;
   }
-  .footer__title{
+  .footer__title {
     padding: 2.25rem 0 0 2.25rem;
   }
-  .footer__storage{
-    display:flex;
+  .footer__storage {
+    display: flex;
     flex-wrap: wrap;
     padding: 1.25rem;
   }
-  .footer__container{
-    display: flex;;
+  .footer__container {
+    display: flex;
     justify-content: flex-end;
   }
-  .footer__box{
+  .footer__box {
     padding: 1rem;
   }
-  .footer__icon{
+  .footer__icon {
     min-height: 0;
     padding-top: 2.5rem;
   }
-  .footer__name{
+  .footer__name {
     display: none;
   }
-  .footer__text{
+  .footer__text {
     padding: 2.25rem;
   }
 }
 
-@include desktop{
-  .section__container,  
-  .gallery__container, 
+@include desktop {
+  .gallery__container,
   .footer__title,
-  .footer__text{
+  .footer__text {
     padding-left: 4rem;
     padding-right: 4rem;
   }
-  .footer__storage{
-    padding-left: 3rem ;
+  .footer__storage {
+    padding-left: 3rem;
   }
 }

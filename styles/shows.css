@@ -1,3 +1,111 @@
-.hero {
-  background-color: black;
+@font-face {
+  font-family: avenir;
+  src: url(../../assets/fonts/Alternative-files/AvenirNextLTPro.ttf) format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: avenir;
+  src: url(../../assets/fonts/Alternative-files/AvenirNextLTProDemi.ttf) format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: avenir;
+  src: url(../../assets/fonts/Alternative-files/AvenirNextLTProBold.ttf) format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+/* primary colors */
+/* secondary-colors */
+.hero__div {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero__title {
+  position: relative;
+}
+
+iframe {
+  z-index: 1;
+  padding: 1rem;
+}
+
+.shows {
+  padding-bottom: 1rem;
+}
+
+.shows__title {
+  padding: 1.5rem 0 1.5rem 1rem;
+}
+
+.concert-container {
+  border-bottom: 1px solid #E1E1E1;
+  margin: 1rem 1rem;
+}
+
+.title {
+  font-weight: 600;
+  color: #E1E1E1;
+}
+
+.date {
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.5rem 0 1rem 0;
+}
+
+.description {
+  font-size: 1rem;
+  padding: 0.5rem 0 1rem 0;
+}
+
+button {
+  background-color: #323232;
+  color: #FFFFFF;
+  border-radius: 0.25rem;
+  height: 2.5rem;
+  width: 90%;
+  border: none;
+}
+
+.concert-first-div {
+  display: none;
+}
+
+@media only screen and (min-width: 768px) {
+  .hero__title-small {
+    padding: 2rem;
+  }
+
+  .shows__title {
+    padding: 3rem 2rem;
+  }
+
+  .concert-container {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .concert-first-div {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .title {
+    display: none;
+  }
+
+  button {
+    width: 10rem;
+  }
+}
+@media only screen and (min-width: 1280px) {
+  .split {
+    display: flex;
+    justify-content: space-between;
+  }
 }/*# sourceMappingURL=shows.css.map */
