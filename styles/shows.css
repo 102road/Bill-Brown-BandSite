@@ -88,6 +88,7 @@ button {
   .concert-container {
     display: flex;
     justify-content: space-evenly;
+    gap: 10px;
   }
 
   .concert-first-div {
