@@ -26,36 +26,41 @@ function renderComments(moreData){
     let nameContainer = document.createElement("div");
     nameContainer.classList.add("comments__split");
 
+    let containerContainer = document.createElement("div");
+    containerContainer.classList.add("comments__container-container");
+
     let name = document.createElement("p");
     name.classList.add("name");
     name.innerText = moreData.name;
 
     let timeStamp = document.createElement("p");
     timeStamp.classList.add("comments__time-stamp");
-    timeStamp.innerText = moreData.timeStamp;
+
+    let date = moreData.timestamp;
+    transferedDate = new Date(date);
+    let newDate = transferedDate.toDateString();
+    timeStamp.innerText = newDate;
 
     let comment = document.createElement("p");
     comment.classList.add("comment");
     comment.innerText = moreData.comment;
 
     let avatar = document.querySelector(".avatar");
+    
     let avatarAtrribute = avatar.getAttribute("src");
     let avatarImage = document.createElement("img");
     avatarImage.classList.add("avatar");
     avatarImage.setAttribute("src", avatarAtrribute);
-    
+
     nameContainer.appendChild(name);
     nameContainer.appendChild(timeStamp);
-    commentsContainer.appendChild(nameContainer);
-    commentsContainer.appendChild(comment);
+    containerContainer.appendChild(nameContainer);
+    containerContainer.appendChild(comment);
+    commentsContainer.appendChild(containerContainer);
     commentsContainer.appendChild(avatarImage);
     commentsSection.appendChild(commentsContainer);
 
-    
-
-
     let likes = moreData.likes;
-
 
 }
 
