@@ -16,4 +16,60 @@
 // ]
 
 
-axios.get("https://project-1-api.herokuapp.com/comments?api_key=1166f440-3999-4ee9-8377-3e240b1a786c").then(function (response) { console.log(response)})
+function renderComments(moreData){
+
+    let commentsSection = document.querySelector(".comments__section");
+
+    let commentsContainer = document.createElement("div");
+    commentsContainer.classList.add("comments__container");
+
+    let nameContainer = document.createElement("div");
+    nameContainer.classList.add("comments__split");
+
+    let name = document.createElement("p");
+    name.classList.add("name");
+    name.innerText = moreData.name;
+
+    let timeStamp = document.createElement("p");
+    timeStamp.classList.add("comments__time-stamp");
+    timeStamp.innerText = moreData.timeStamp;
+
+    let comment = document.createElement("p");
+    comment.classList.add("comment");
+    comment.innerText = moreData.comment;
+
+    let avatar = document.querySelector(".avatar");
+    let avatarAtrribute = avatar.getAttribute("src");
+    let avatarImage = document.createElement("img");
+    avatarImage.classList.add("avatar");
+    avatarImage.setAttribute("src", avatarAtrribute);
+    
+    nameContainer.appendChild(name);
+    nameContainer.appendChild(timeStamp);
+    commentsContainer.appendChild(nameContainer);
+    commentsContainer.appendChild(comment);
+    commentsContainer.appendChild(avatarImage);
+    commentsSection.appendChild(commentsContainer);
+
+    
+
+
+    let likes = moreData.likes;
+
+
+}
+
+function scanComments(data){
+    data.forEach(element => {
+        renderComments(element)
+    });
+}
+function fetchComments(url){
+axios
+  .get(url)
+  .then(function (response) {
+      console.log(response)
+    scanComments(response.data)
+  });}
+
+  fetchComments("https://project-1-api.herokuapp.com/comments?api_key=1166f440-3999-4ee9-8377-3e240b1a786c")
