@@ -37,7 +37,7 @@ function createConcertListing(values) {
   //Create Div Element
   let concertContainer = document.createElement("div");
   //Add Class
-  concertContainer.classList.add("concert-container")
+  concertContainer.classList.add("concert-container");
   //Create P element for Date
   let concertDate = document.createElement("p");
   //Create Text for Date
@@ -48,8 +48,16 @@ function createConcertListing(values) {
   concertContainer.appendChild(concertDate);
   //Create P element for Concert Date
   let concertDateDescription = document.createElement("p");
+
+  let timeStamp = values.date;
+  console.log(timeStamp);
+  changeDate = Number(timeStamp)
+  transferedDate = new Date(changeDate);
+  console.log(transferedDate);
+  let newDate = transferedDate.toDateString();
+
   //Create Text for Concert Date
-  concertDateDescription.innerText = values.date;
+  concertDateDescription.innerText = newDate;
   // Add class
   concertDateDescription.classList.add("date");
   //Place Concert Date in div element
@@ -65,9 +73,9 @@ function createConcertListing(values) {
   //Create P for Concert Venue
   let concertVenueDescription = document.createElement("p");
   //Create text for Concert Venu
-  concertVenueDescription.innerText = values.venue;
+  concertVenueDescription.innerText = values.place;
   // add class
-  concertVenueDescription.classList.add("description")
+  concertVenueDescription.classList.add("description");
   //Place concert in div element
   concertContainer.appendChild(concertVenueDescription);
   //Create p for location
@@ -83,7 +91,7 @@ function createConcertListing(values) {
   //Create text for concert location
   concertLocationDescription.innerText = values.location;
   // Add Class
-  concertLocationDescription.classList.add("description")
+  concertLocationDescription.classList.add("description");
   //Place concert location in div element
   concertContainer.appendChild(concertLocationDescription);
   //Create button
@@ -95,33 +103,39 @@ function createConcertListing(values) {
   //Place div in shows section
   concertSection.appendChild(concertContainer);
 }
-
 // function with a for each to loop through each object in the concert array
-
 function displayConcertListing(concert) {
   concert.forEach((element) => {
     createConcertListing(element);
   });
 }
-
+// call function to display listings
+function fetchComments(url) {
+  axios.get(url).then(function (response) {
+    console.log(response);
+    displayConcertListing(response.data);
+  });
+}
 //Create a div with Date Venue Location to be hidden for mobile display
-let concertSection = document.querySelector(".shows")
+let concertSection = document.querySelector(".shows");
 let concertFirstDiv = document.createElement("div");
 concertFirstDiv.classList.add("concert-first-div");
 let firstDate = document.createElement("p");
-firstDate.innerText ="DATE";
+firstDate.innerText = "DATE";
 firstDate.classList.add("first");
 concertFirstDiv.appendChild(firstDate);
 let firstVenue = document.createElement("p");
 firstVenue.innerText = "VENUE";
 firstVenue.classList.add("first");
 concertFirstDiv.appendChild(firstVenue);
-let firstLocation = document.createElement("p")
+let firstLocation = document.createElement("p");
 firstLocation.innerText = "LOCATION";
 firstLocation.classList.add("first");
 concertFirstDiv.appendChild(firstLocation);
 concertSection.appendChild(concertFirstDiv);
 
 
-// call function to display listings
-displayConcertListing(concertArr);
+
+fetchComments(
+  "https://project-1-api.herokuapp.com/showdates?api_key=1166f440-3999-4ee9-8377-3e240b1a786c"
+);

@@ -46,7 +46,7 @@ function renderComments(moreData){
     comment.innerText = moreData.comment;
 
     let avatar = document.querySelector(".avatar");
-    
+
     let avatarAtrribute = avatar.getAttribute("src");
     let avatarImage = document.createElement("img");
     avatarImage.classList.add("avatar");
