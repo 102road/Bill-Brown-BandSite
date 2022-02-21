@@ -32,14 +32,14 @@ function renderComments(moreData, boolean) {
 
   let date = moreData.timestamp;
   transferedDate = new Date(date);
-  let newDate = transferedDate.toDateString();
+  let newDate = transferedDate.toLocaleDateString();
   timeStamp.innerText = newDate;
 
   let comment = document.createElement("p");
   comment.classList.add("comment");
   comment.innerText = moreData.comment;
 
-  let avatar = document.querySelector(".avatar");
+  let avatar = document.querySelector(".avatar__top");
 
   let avatarAtrribute = avatar.getAttribute("src");
   let avatarImage = document.createElement("img");
@@ -50,8 +50,9 @@ function renderComments(moreData, boolean) {
   nameContainer.appendChild(timeStamp);
   containerContainer.appendChild(nameContainer);
   containerContainer.appendChild(comment);
-  commentsContainer.appendChild(containerContainer);
   commentsContainer.appendChild(avatarImage);
+  commentsContainer.appendChild(containerContainer);
+  
 
   displayComment(commentsContainer, boolean);
 }
@@ -71,7 +72,7 @@ function fetchComments(url) {
     console.log(response);
 
     // sorts through objects in array and puts them in order of newest to oldest
-    
+
     let newArr = response.data.sort((a, b) => (a.color > b.color ? 1 : -1));
 
     scanComments(newArr);
@@ -83,7 +84,7 @@ function fetchComments(url) {
 function addComment(newName, newComment) {
   axios
     .post(
-      "http://project-1-api.herokuapp.com/comments?api_key=1eda2d0d-2124-48b5-9b00-f2b1b91be3b5",
+      "http://project-1-api.herokuapp.com/comments?api_key=59af27d9-56b2-448f-9800-f14e9cbb39d5",
       {
         name: newName,
         comment: newComment,
@@ -97,7 +98,7 @@ function addComment(newName, newComment) {
 // code starts here
 
 let apiUserUrl =
-  "https://project-1-api.herokuapp.com/comments?api_key=1eda2d0d-2124-48b5-9b00-f2b1b91be3b5";
+  "https://project-1-api.herokuapp.com/comments?api_key=59af27d9-56b2-448f-9800-f14e9cbb39d5";
 
 let submitFunction = document.querySelector(".conversation__form");
 submitFunction.addEventListener("submit", (e) => {
