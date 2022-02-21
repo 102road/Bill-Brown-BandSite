@@ -1,80 +1,119 @@
-// let commentsArr =[{
-//     name: "Connor Walton",
-//     date:"02/17/2021",
-//     comment: "This is art. This is inexplicable magic expressed in the purest way, everything that makes up this majestic work deserves reverence. Let us appreciate this for what it is and what it contains.",
-// },
-// {
-//     name:"Emilie Beach",
-//     date: "01/09/2021",
-//     comment: "I feel blessed to have seen them in person. What a show! They were just perfection. If there was one day of my life I could relive, this would be it. What an incredible day.",
-// },
-// {
-//     name: "Miles Acosta",
-//     date: "12/20/2020",
-//     comment: "I can't stop listening. Every time I hear one of their songs - the vocals - it gives me goosebumps. Shivers straight down my spine. What a beautiful expression of creativity. Can't get enough.",
-// }
-// ]
+// display function which sends newly submitted comments to the top
 
+function displayComment(commentsDiv, option) {
+  let commentsTop = document.querySelector(".comments__top");
+  let commentsSection = document.querySelector(".comments__section");
 
-function renderComments(moreData){
-
-    let commentsSection = document.querySelector(".comments__section");
-
-    let commentsContainer = document.createElement("div");
-    commentsContainer.classList.add("comments__container");
-
-    let nameContainer = document.createElement("div");
-    nameContainer.classList.add("comments__split");
-
-    let containerContainer = document.createElement("div");
-    containerContainer.classList.add("comments__container-container");
-
-    let name = document.createElement("p");
-    name.classList.add("name");
-    name.innerText = moreData.name;
-
-    let timeStamp = document.createElement("p");
-    timeStamp.classList.add("comments__time-stamp");
-
-    let date = moreData.timestamp;
-    transferedDate = new Date(date);
-    let newDate = transferedDate.toDateString();
-    timeStamp.innerText = newDate;
-
-    let comment = document.createElement("p");
-    comment.classList.add("comment");
-    comment.innerText = moreData.comment;
-
-    let avatar = document.querySelector(".avatar");
-
-    let avatarAtrribute = avatar.getAttribute("src");
-    let avatarImage = document.createElement("img");
-    avatarImage.classList.add("avatar");
-    avatarImage.setAttribute("src", avatarAtrribute);
-
-    nameContainer.appendChild(name);
-    nameContainer.appendChild(timeStamp);
-    containerContainer.appendChild(nameContainer);
-    containerContainer.appendChild(comment);
-    commentsContainer.appendChild(containerContainer);
-    commentsContainer.appendChild(avatarImage);
-    commentsSection.appendChild(commentsContainer);
-
-    let likes = moreData.likes;
-
+  if (option) {
+    commentsTop.appendChild(commentsDiv);
+  } else {
+    commentsSection.appendChild(commentsDiv);
+  }
 }
 
-function scanComments(data){
-    data.forEach(element => {
-        renderComments(element)
+// renders comments takes two arguments for display function
+
+function renderComments(moreData, boolean) {
+  let commentsContainer = document.createElement("div");
+  commentsContainer.classList.add("comments__container");
+
+  let nameContainer = document.createElement("div");
+  nameContainer.classList.add("comments__split");
+
+  let containerContainer = document.createElement("div");
+  containerContainer.classList.add("comments__container-container");
+
+  let name = document.createElement("p");
+  name.classList.add("name");
+  name.innerText = moreData.name;
+
+  let timeStamp = document.createElement("p");
+  timeStamp.classList.add("comments__time-stamp");
+
+  let date = moreData.timestamp;
+  transferedDate = new Date(date);
+  let newDate = transferedDate.toDateString();
+  timeStamp.innerText = newDate;
+
+  let comment = document.createElement("p");
+  comment.classList.add("comment");
+  comment.innerText = moreData.comment;
+
+  let avatar = document.querySelector(".avatar");
+
+  let avatarAtrribute = avatar.getAttribute("src");
+  let avatarImage = document.createElement("img");
+  avatarImage.classList.add("avatar");
+  avatarImage.setAttribute("src", avatarAtrribute);
+
+  nameContainer.appendChild(name);
+  nameContainer.appendChild(timeStamp);
+  containerContainer.appendChild(nameContainer);
+  containerContainer.appendChild(comment);
+  commentsContainer.appendChild(containerContainer);
+  commentsContainer.appendChild(avatarImage);
+
+  displayComment(commentsContainer, boolean);
+}
+
+// scans through each object in API array
+
+function scanComments(data) {
+  data.forEach((element) => {
+    renderComments(element, false);
+  });
+}
+
+// fetches information from API
+
+function fetchComments(url) {
+  axios.get(url).then(function (response) {
+    console.log(response);
+
+    // sorts through objects in array and puts them in order of newest to oldest
+    
+    let newArr = response.data.sort((a, b) => (a.color > b.color ? 1 : -1));
+
+    scanComments(newArr);
+  });
+}
+
+// adds new comment to API
+
+function addComment(newName, newComment) {
+  axios
+    .post(
+      "http://project-1-api.herokuapp.com/comments?api_key=1eda2d0d-2124-48b5-9b00-f2b1b91be3b5",
+      {
+        name: newName,
+        comment: newComment,
+      }
+    )
+    .then((response) => {
+      console.log(response);
     });
 }
-function fetchComments(url){
-axios
-  .get(url)
-  .then(function (response) {
-      console.log(response)
-    scanComments(response.data)
-  });}
 
-  fetchComments("https://project-1-api.herokuapp.com/comments?api_key=1166f440-3999-4ee9-8377-3e240b1a786c")
+// code starts here
+
+let apiUserUrl =
+  "https://project-1-api.herokuapp.com/comments?api_key=1eda2d0d-2124-48b5-9b00-f2b1b91be3b5";
+
+let submitFunction = document.querySelector(".conversation__form");
+submitFunction.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  let newName = e.target.name.value;
+  let newComment = e.target.comments.value;
+  addComment(newName, newComment);
+
+  let newObj = {
+    name: newName,
+    comment: newComment,
+    timestamp: new Date(),
+  };
+  renderComments(newObj, true);
+  submitFunction.reset();
+});
+
+fetchComments(apiUserUrl);

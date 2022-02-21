@@ -194,6 +194,11 @@ img {
   border-bottom: 1px solid #E1E1E1;
 }
 
+.comments__top {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
 input {
   width: 100%;
 }
