@@ -73,7 +73,7 @@ function fetchComments(url) {
 
     // sorts through objects in array and puts them in order of newest to oldest
 
-    let newArr = response.data.sort((a, b) => (a.color > b.color ? 1 : -1));
+    let newArr = response.data.sort((a, b) => (a.timestamp > b.timestamp ? -1 : 1));
 
     scanComments(newArr);
   });
