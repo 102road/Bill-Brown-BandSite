@@ -1,39 +1,6 @@
-let concertArr = [
-  {
-    date: "Mon Sept 06 2021",
-    venue: "Ronald Lane",
-    location: "San Francisco, CA",
-  },
-  {
-    date: "Tue Sept 21 2021",
-    venue: "Pier 3 East",
-    location: "San Francisco, CA",
-  },
-  {
-    date: "Fri Oct 15 2021",
-    venue: "View Lounge",
-    location: "San Francisco, CA",
-  },
-  {
-    date: "Sat Nov 06 2021",
-    venue: "Hyatt Agency",
-    location: "San Francisco, CA",
-  },
-  {
-    date: "Fri Nov 26 2021",
-    venue: "Moscow Center",
-    location: "San Francisco, CA",
-  },
-  {
-    date: "Wed Dec 15 2021",
-    venue: "Press Club",
-    location: "San Francisco, CA",
-  },
-];
-
 function createConcertListing(values) {
   //Select Section
-  let concertSection = document.querySelector(".shows");
+  let concertSection = document.querySelector(".shows__div");
   //Create Div Element
   let concertContainer = document.createElement("div");
   //Add Class
@@ -117,7 +84,7 @@ function fetchComments(url) {
   });
 }
 //Create a div with Date Venue Location to be hidden for mobile display
-let concertSection = document.querySelector(".shows");
+let concertSection = document.querySelector(".shows__div");
 let concertFirstDiv = document.createElement("div");
 concertFirstDiv.classList.add("concert-first-div");
 let firstDate = document.createElement("p");
